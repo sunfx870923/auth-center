@@ -29,7 +29,8 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util.xsd">
     <description>
-    	Configuration for the default TicketRegistry which stores the tickets in-memory and cleans them out as specified intervals.
+        Configuration for the default TicketRegistry which stores the tickets in-memory and cleans them out as specified
+        intervals.
     </description>
 
     <bean id="redisManager" class="com.lingchaomin.auth.cas.registry.RedisManager">
@@ -51,5 +52,5 @@
     <bean id="kryoTranscoder"
           class="org.jasig.cas.ticket.registry.support.kryo.KryoTranscoder"
           init-method="initialize"
-          c:initialBufferSize="8192" />
+          c:initialBufferSize="8192"/>
 </beans>

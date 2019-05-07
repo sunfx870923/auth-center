@@ -61,15 +61,15 @@
     -->
     <bean id="messageSource" class="org.jasig.cas.web.view.CasReloadableMessageBundle"
           p:basenames-ref="basenames" p:fallbackToSystemLocale="false" p:defaultEncoding="UTF-8"
-          p:cacheSeconds="180" p:useCodeAsDefaultMessage="true" />
+          p:cacheSeconds="180" p:useCodeAsDefaultMessage="true"/>
 
     <util:list id="basenames">
         <value>classpath:custom_messages</value>
         <value>classpath:messages</value>
     </util:list>
-    
+
     <bean id="servicesManager" class="org.jasig.cas.services.DefaultServicesManagerImpl"
-        c:serviceRegistryDao-ref="serviceRegistryDao" />
+          c:serviceRegistryDao-ref="serviceRegistryDao"/>
 
     <!--
         Job to periodically reload services from service registry.
@@ -91,7 +91,7 @@
           p:connectionTimeout="5000"/>
 
     <bean id="noRedirectHttpClient" class="org.jasig.cas.util.SimpleHttpClient" parent="httpClient"
-          p:followRedirects="false" />
+          p:followRedirects="false"/>
 
     <bean id="persistentIdGenerator"
           class="org.jasig.cas.authentication.principal.ShibbolethCompatiblePersistentIdGenerator"
@@ -101,15 +101,15 @@
           c:servicesManager-ref="servicesManager"
           c:httpClient-ref="noRedirectHttpClient"
           c:logoutMessageBuilder-ref="logoutBuilder"
-          p:disableSingleSignOut="${slo.callbacks.disabled:false}" />
+          p:disableSingleSignOut="${slo.callbacks.disabled:false}"/>
 
-    <bean id="logoutBuilder" class="org.jasig.cas.logout.SamlCompliantLogoutMessageCreator" />
-    
+    <bean id="logoutBuilder" class="org.jasig.cas.logout.SamlCompliantLogoutMessageCreator"/>
+
     <!-- CentralAuthenticationService -->
     <bean id="centralAuthenticationService" class="org.jasig.cas.CentralAuthenticationServiceImpl">
         <constructor-arg index="0" ref="ticketRegistry"/>
         <constructor-arg index="1">
-          <null />
+            <null/>
         </constructor-arg>
         <constructor-arg index="2" ref="authenticationManager"/>
         <constructor-arg index="3" ref="ticketGrantingTicketUniqueIdGenerator"/>
@@ -132,7 +132,7 @@
           class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 
     <bean id="validationAnnotationBeanPostProcessor" class="org.jasig.cas.util.CustomBeanValidationPostProcessor"
-            p:afterInitialization="true" />
+          p:afterInitialization="true"/>
 
     <!-- The scheduler bean wires up any triggers that define scheduled tasks -->
     <bean id="scheduler" class="org.jasig.cas.util.AutowiringSchedulerFactoryBean"/>
@@ -140,31 +140,31 @@
     <!--    oauth2 微信登录     -->
     <bean id="clients" class="org.pac4j.core.client.Clients">
         <!--    修改为微信开发平台填写的callbackUrl参数值, 此处为示例    -->
-        <property name="callbackUrl" value="${oauth2.wechat.callbackUrl}" />
+        <property name="callbackUrl" value="${oauth2.wechat.callbackUrl}"/>
         <property name="clients">
             <list>
                 <!--<ref bean="weiXin" />-->
-                <ref bean="qq" />
+                <ref bean="qq"/>
             </list>
         </property>
     </bean>
     <bean id="weiXin" class="com.lingchaomin.auth.cas.plugin.wechat.WechatClient">
         <!--    修改为微信开发平台填写的key及secret参数值, 此处为示例    -->
-        <property name="key" value="${oauth2.wechat.appid}" />
-        <property name="secret" value="${oauth2.wechat.secret}" />
+        <property name="key" value="${oauth2.wechat.appid}"/>
+        <property name="secret" value="${oauth2.wechat.secret}"/>
     </bean>
 
     <bean id="qq" class="com.lingchaomin.auth.cas.plugin.qq.QQClient">
         <!--    修改为微qq开发平台填写的key及secret参数值, 此处为示例    -->
-        <property name="key" value="${oauth2.qq.appid}" />
-        <property name="secret" value="${oauth2.qq.secret}" />
+        <property name="key" value="${oauth2.qq.appid}"/>
+        <property name="secret" value="${oauth2.qq.secret}"/>
         <property name="qqUserService" ref="qqUserService"/>
     </bean>
 
 
     <!--<bean id="qq" class="org.jasig.cas.support.pac4j.plugin.qq.QqClient">-->
-        <!--<property name="key" value="yourkey" />-->
-        <!--<property name="secret" value="yousecret" />-->
+    <!--<property name="key" value="yourkey" />-->
+    <!--<property name="secret" value="yousecret" />-->
     <!--</bean>-->
 
 </beans>
