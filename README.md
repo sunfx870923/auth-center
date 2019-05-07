@@ -53,7 +53,8 @@ qq_user_ref:qq用户与用户表关联
 verify_code:验证码发送表
 
 #### 数据库连接配置
-数据库配置文件 doc的sql文件夹下 jdbc.properties<cas用户名密码：18107553837/1>
+数据库配置文件 doc的sql文件夹下 jdbc.properties
+CAS登陆账号：18107553837/1
 
 - jdbc.driver=com.mysql.jdbc.Driver
 - jdbc.url=     //数据库地址
